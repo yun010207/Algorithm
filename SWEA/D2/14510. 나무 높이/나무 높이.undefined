@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+class Solution {
+	static int N;
+	static int trees[];
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T=sc.nextInt();
+		for(int test_case = 1; test_case <= T; test_case++)
+		{
+			N = sc.nextInt();
+			trees = new int[N];
+			int best = 0;
+			int rm1 = 0;
+			int rm2 = 0;
+			
+			for(int i = 0; i < N; i++) {
+				trees[i] = sc.nextInt();
+				best = Math.max(best, trees[i]);
+			}
+			
+			for(int i = 0; i < N; i++) {
+				rm2 += (best - trees[i]) / 2;
+				rm1 += (best - trees[i]) % 2;
+			}
+			int day = 0;
+			
+			while (rm2 > rm1 + 1) {
+				rm2--;
+				rm1 += 2;
+			}
+			
+			
+			if(rm1 > rm2) {
+				day = rm1 * 2 - 1;
+			}
+			else {
+				day = rm2 * 2;
+			}
+			
+			
+			System.out.println("#"+test_case+" "+day);
+			
+		}
+	}
+}
