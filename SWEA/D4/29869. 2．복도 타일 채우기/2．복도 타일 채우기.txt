@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+	
+	static int[] dp = new int[31];
+	
+	public static void main(String[] args) throws IOException {
+		dp[0] = 1;
+		dp[1] = 1;
+		dp[2] = 3;
+		for(int i = 3; i <= 30; i++) dp[i] = dp[i - 1] + 2*dp[i - 2];
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		
+		int T = Integer.parseInt(br.readLine());
+		for(int test_case = 1; test_case <= T; test_case++) {
+			int N = Integer.parseInt(br.readLine());
+			
+			sb.append("#").append(test_case).append(" ").append(dp[N]).append("\n");
+		}
+		
+		System.out.println(sb);
+	}
+}
