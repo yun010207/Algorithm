@@ -7,13 +7,13 @@ class Solution {
     static char dir[] = {'d', 'l', 'r', 'u'};
     
     static String minPass;
-    static char str[];
+    static char pass[];
     
     public String solution(int n, int m, int x, int y, int r, int c, int k) {
     	
     	minPass = null;
     	
-    	str = new char[k];
+    	pass = new char[k];
     	
         int dist = getDist(x, y, r, c);
         if(dist > k || (k - dist) % 2 == 1) return "impossible";
@@ -29,7 +29,7 @@ class Solution {
 
     	if(depth == k) {
     		if(x != r || y != c) return;
-    		minPass = new String(str);
+    		minPass = new String(pass);
     		
     		return;
     	}
@@ -41,7 +41,7 @@ class Solution {
     		if(nr < 1 || nr > n || nc < 1 || nc > m) continue;
     		if(getDist(nr, nc, r, c) > k - (depth + 1)) continue;
     		
-    		str[depth] = dir[d];
+    		pass[depth] = dir[d];
     		dfs(n, m, nr, nc, r, c, k, depth + 1);
     	}
     }
